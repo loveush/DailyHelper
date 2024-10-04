@@ -1,10 +1,3 @@
-//
-//  FirstOnboardView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 27.09.2024.
-//
-
 import SwiftUI
 
 struct FirstOnboardView: View {
@@ -15,7 +8,11 @@ struct FirstOnboardView: View {
                     .frame(width: UIScreen.main.bounds.width)
                 
                 VStack {
-                    Spacer(minLength: 140)
+                    Text("DailyHelper")
+                        .font(.body)
+                        .foregroundColor(Color("darkpink"))
+                        .offset(y:25)
+                    Spacer(minLength: 110)
                     Image("balancering")
                         .resizable()
                         .scaledToFit()

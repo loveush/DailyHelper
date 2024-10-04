@@ -1,10 +1,3 @@
-//
-//  ThirdOnboardView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 28.09.2024.
-//
-
 import SwiftUI
 
 struct ThirdOnboardView: View {
@@ -14,13 +7,18 @@ struct ThirdOnboardView: View {
                 OnboardBackground()
                     .frame(width: UIScreen.main.bounds.width)
                 VStack {
-                    Spacer(minLength: 140)
+                    Text("DailyHelper")
+                        .font(.body)
+                        .foregroundColor(Color("darkpink"))
+                        .offset(y:-10)
+                    Spacer()
                     Image("schedule")
                         .resizable()
                         .scaledToFit()
                         .aspectRatio(2.5, contentMode: .fit)
                         .offset(x:80, y: 40)
                     Spacer()
+                    
                     VStack (spacing: 12) {
                         Text("Составляйте график\nтренировок")
                             .foregroundColor(Color("text"))
@@ -33,6 +31,7 @@ struct ThirdOnboardView: View {
                     }
                     .foregroundColor(Color("text"))
                     .multilineTextAlignment(.center)
+                    .offset(y:20)
                     Spacer()
                     
                     VStack (spacing: 15){

@@ -1,10 +1,3 @@
-//
-//  RegistrationViewViewModel.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 23.09.2024.
-//
-
 import Foundation
 
 class RegistrationViewViewModel: ObservableObject {

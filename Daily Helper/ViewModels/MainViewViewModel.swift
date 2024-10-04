@@ -1,10 +1,3 @@
-//
-//  MainViewViewModel.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 26.09.2024.
-//
-
 import Foundation
 import FirebaseAuth
 

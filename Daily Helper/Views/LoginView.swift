@@ -1,10 +1,3 @@
-//
-//  LoginView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 21.09.2024.
-//
-
 import SwiftUI
 
 struct LoginView: View {
@@ -16,11 +9,13 @@ struct LoginView: View {
                 .frame(width: UIScreen.main.bounds.width)
             
             VStack {
-                Spacer(minLength: 270)
+                Spacer(minLength: 210)
                 
                 Text("Вход")
                     .font(.title)
                     .foregroundColor(Color("text"))
+                
+                Spacer(minLength: 30)
                 
                 VStack(spacing: 15) {
                     CustomTextField(text: $viewModel.email,
@@ -46,7 +41,7 @@ struct LoginView: View {
                 }
                 .frame(width: 180, height: 55)
                 
-                Spacer()
+                Spacer(minLength: 30)
                         
             }
         }
