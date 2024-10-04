@@ -1,9 +1,3 @@
-//
-//  Registration2ViewViewModel.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 25.09.2024.
-//
 import FirebaseFirestore
 import FirebaseAuth
 import Foundation

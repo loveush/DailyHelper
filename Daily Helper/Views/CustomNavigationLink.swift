@@ -1,10 +1,3 @@
-//
-//  CustomNavigationLink.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 27.09.2024.
-//
-
 import SwiftUI
 
 struct CustomNavigationLink<Destination: View>: View {

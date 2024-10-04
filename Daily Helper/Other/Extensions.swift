@@ -1,10 +1,3 @@
-//
-//  Extensions.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 24.09.2024.
-//
-
 import Foundation
 
 extension Encodable {

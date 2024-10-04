@@ -1,10 +1,3 @@
-//
-//  ThirdOnboardView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 28.09.2024.
-//
-
 import SwiftUI
 
 struct ThirdOnboardView: View {

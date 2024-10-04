@@ -1,10 +1,3 @@
-//
-//  TrainingsView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 21.09.2024.
-//
-
 import SwiftUI
 
 struct TrainingsView: View {
