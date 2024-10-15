@@ -8,19 +8,19 @@ struct MainView: View {
             // signed in
             if #available(iOS 18.0, *) {
                 TabView {
-                    Tab("WaterBalance", systemImage: "drop") {
+                    Tab("", systemImage: "drop") {
                         WaterBalanceView()
                     }
                     
-                    Tab("Pillbox", systemImage: "pills") {
+                    Tab("", systemImage: "pills") {
                         PillboxView()
                     }
                     
-                    Tab("Workouts", systemImage: "figure.strengthtraining.functional") {
-                        WorkoutsView()
+                    Tab("", systemImage: "figure.strengthtraining.functional") {
+                        WorkoutsView(userId: viewModel.currentUserId)
                     }
                     
-                    Tab("Profile", systemImage: "person") {
+                    Tab("", systemImage: "person") {
                         ProfileView()
                     }
                 }
