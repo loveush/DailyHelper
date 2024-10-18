@@ -38,7 +38,7 @@ struct RegistrationView: View {
                         if !viewModel.errorMessage.isEmpty {
                             Text(viewModel.errorMessage)
                                 .foregroundStyle(Color.red)
-                    }
+                        }
                     Spacer()
 
                         
@@ -55,6 +55,7 @@ struct RegistrationView: View {
                             }
                         }
                                        .frame(width: 180, height: 55)
+                                       .disabled(user == nil)
                                        .simultaneousGesture(TapGesture().onEnded {
                                            if let createdUser = viewModel.createUser() {
                                                self.user = createdUser // Pass the user to the next view

@@ -33,6 +33,19 @@ class SecondRegistrationViewViewModel: ObservableObject {
             .document(id)
             .setData(user.asDictionary())
     }
+    
+    func validate(name: String, weight: String, height: String) -> Bool {
+        errorMessage = ""
+        guard !name.trimmingCharacters(in: .whitespaces).isEmpty,
+              !weight.trimmingCharacters(in: .whitespaces).isEmpty,
+              !height.trimmingCharacters(in: .whitespaces).isEmpty
+        else {
+            errorMessage = "Please, fill in all the fields"
+            return false
+        }
+        
+        return true
+    }
 
 }
     

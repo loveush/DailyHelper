@@ -51,18 +51,25 @@ struct Registration2View: View {
                     CustomTextField(text: $weight, placeholder: "Введите вес...")
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.none)
+                    
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundStyle(Color.red)
+                    }
                 }
                 
                 Spacer(minLength: 120)
                 
                 TLButton(title: "Завершить", background: Color("darkpink")) {
-                    if let heightValue = Double(height),
-                       let weightValue = Double(weight) {
-                        viewModel.completeRegistration(name: name,
-                                                       height: heightValue,
-                                                       weight: weightValue)
-                    }  else {
-                        viewModel.errorMessage = "Incorrect input"
+                    if viewModel.validate(name: name, weight: weight, height: height) {
+                        if let heightValue = Double(height),
+                           let weightValue = Double(weight) {
+                            viewModel.completeRegistration(name: name,
+                                                           height: heightValue,
+                                                           weight: weightValue)
+                        } else {
+                            viewModel.errorMessage = "Please, enter the correct weight and height"
+                        }
                     }
                 }
                 .frame(width: 180, height: 55)

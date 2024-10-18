@@ -4,6 +4,7 @@ struct MainView: View {
     @StateObject var viewModel = MainViewViewModel()
     
     var body: some View {
+//        RegistrationView()
         if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
             // signed in
             if #available(iOS 18.0, *) {

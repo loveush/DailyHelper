@@ -169,9 +169,9 @@
 			isa = PBXGroup;
 			children = (
 				A7A949672CA0B39F00EF7504 /* LoginViewViewModel.swift */,
-				A7A9496B2CA1C14100EF7504 /* RegistrationViewViewModel.swift */,
 				A72131822CA5C43A00BEAFDE /* MainViewViewModel.swift */,
 				A7241AB32CBD9E7E00E6B23D /* WorkoutsViewViewModel.swift */,
+				A7A9496B2CA1C14100EF7504 /* RegistrationViewViewModel.swift */,
 				A72131802CA4A47D00BEAFDE /* SecondRegistrationViewViewModel.swift */,
 			);
 			path = ViewModels;
