@@ -1,10 +1,3 @@
-//
-//  RegistrationView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 21.09.2024.
-//
-
 import SwiftUI
 
 struct RegistrationView: View {
@@ -26,7 +19,7 @@ struct RegistrationView: View {
                         .font(.title)
                         .foregroundColor(Color("text"))
                     
-                    Spacer()
+                    Spacer(minLength: 30)
                     
                     VStack(spacing: 15) {
                         CustomTextField(text: $viewModel.email,
@@ -41,12 +34,13 @@ struct RegistrationView: View {
                                           placeholder: "Повторите пароль...")
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.none)
-                    }
-                    Spacer(minLength: 120)
-                    
-                    if !viewModel.errorMessage.isEmpty {
-                        Text(viewModel.errorMessage)
-                            .foregroundStyle(Color.red)
+                        
+                        if !viewModel.errorMessage.isEmpty {
+                            Text(viewModel.errorMessage)
+                                .foregroundStyle(Color.red)
+                        }
+                    Spacer()
+
                         
                     }
                     VStack (spacing: 15) {
@@ -61,6 +55,7 @@ struct RegistrationView: View {
                             }
                         }
                                        .frame(width: 180, height: 55)
+                                       .disabled(user == nil)
                                        .simultaneousGesture(TapGesture().onEnded {
                                            if let createdUser = viewModel.createUser() {
                                                self.user = createdUser // Pass the user to the next view
@@ -73,7 +68,7 @@ struct RegistrationView: View {
                         }
                     }
                     
-                    Spacer()
+                    Spacer(minLength: 30)
                     
                 }
             }

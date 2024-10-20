@@ -1,10 +1,3 @@
-//
-//  SecondOnboardView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 27.09.2024.
-//
-
 import SwiftUI
 
 struct SecondOnboardView: View {
@@ -14,7 +7,11 @@ struct SecondOnboardView: View {
                 OnboardBackground()
                     .frame(width: UIScreen.main.bounds.width)
                 VStack {
-                    Spacer(minLength: 140)
+                    Text("DailyHelper")
+                        .font(.body)
+                        .foregroundColor(Color("darkpink"))
+                        .offset(y:-10)
+                    Spacer()
                     Image("pills")
                         .resizable()
                         .scaledToFit()
@@ -43,7 +40,7 @@ struct SecondOnboardView: View {
                                 .foregroundStyle(.white)
                         }
                     }
-                    Spacer(minLength: 60)
+                    Spacer(minLength: 50)
                 }
                 
             }

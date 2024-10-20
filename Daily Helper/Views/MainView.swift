@@ -1,23 +1,36 @@
-//
-//  ContentView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 21.09.2024.
-//
-
 import SwiftUI
 
 struct MainView: View {
     @StateObject var viewModel = MainViewViewModel()
     
     var body: some View {
-//        if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
-//            // signed in
-//            TrainingsView()
-//        } else {
-//            FirstOnboardView()
-//        }
-        FirstOnboardView()
+//        LoginView()
+        if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
+            // signed in
+            if #available(iOS 18.0, *) {
+                TabView {
+                    Tab("", systemImage: "drop") {
+                        WaterBalanceView()
+                    }
+                    
+                    Tab("", systemImage: "pills") {
+                        PillboxView()
+                    }
+                    
+                    Tab("", systemImage: "figure.strengthtraining.functional") {
+                        WorkoutsView(userId: viewModel.currentUserId)
+                    }
+                    
+                    Tab("", systemImage: "person") {
+                        ProfileView()
+                    }
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+        } else {
+            FirstOnboardView()
+        }
     }
 }
 

@@ -1,18 +1,11 @@
-//
-//  CustomTextField.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 22.09.2024.
-//
-
 import SwiftUI
 
-struct CustomTextField: View {
+struct CustomSecureField: View {
     @Binding var text: String
     var placeholder: String
-
+    
     var body: some View {
-        TextField("",
+        SecureField("",
                   text: $text,
                   prompt: Text(placeholder)
             .foregroundColor(Color("lighttext")))
@@ -23,7 +16,7 @@ struct CustomTextField: View {
                         .stroke(Color("darkpink"), lineWidth: 2)
                 )
         .padding(.horizontal, 40)
+        
     }
 }
-
 

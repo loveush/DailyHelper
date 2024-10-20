@@ -1,10 +1,3 @@
-//
-//  RegistrationViewViewModel.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 23.09.2024.
-//
-
 import Foundation
 
 class RegistrationViewViewModel: ObservableObject {
@@ -23,8 +16,8 @@ class RegistrationViewViewModel: ObservableObject {
                     email: email,
                     password: password,
                     name: "",
-                    height: 0.0,
-                    weight: 0.0,
+                    height: 0,
+                    weight: 0,
                     joined: Date().timeIntervalSince1970)
     }
     

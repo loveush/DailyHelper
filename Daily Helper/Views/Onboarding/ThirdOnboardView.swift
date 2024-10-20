@@ -1,51 +1,50 @@
-//
-//  FirstOnboardView.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 27.09.2024.
-//
-
 import SwiftUI
 
-struct FirstOnboardView: View {
+struct ThirdOnboardView: View {
     var body: some View {
         NavigationStack {
             ZStack {
                 OnboardBackground()
                     .frame(width: UIScreen.main.bounds.width)
-                
                 VStack {
-                    Spacer(minLength: 140)
-                    Image("balancering")
+                    Text("DailyHelper")
+                        .font(.body)
+                        .foregroundColor(Color("darkpink"))
+                        .offset(y:-10)
+                    Spacer()
+                    Image("schedule")
                         .resizable()
                         .scaledToFit()
-                        .aspectRatio(1.7, contentMode: .fit)
-                        .offset(x:-22, y:10)
-                    
+                        .aspectRatio(2.5, contentMode: .fit)
+                        .offset(x:80, y: 40)
                     Spacer()
+                    
                     VStack (spacing: 12) {
-                        Text("Следите за потреблением воды")
+                        Text("Составляйте график\nтренировок")
                             .foregroundColor(Color("text"))
                             .multilineTextAlignment(.center)
                             .font(.system(size: 24))
-                        Text("Мы рассчитаем дневную дозу воды, в которой нуждается ваш организм, и будем отправлять вам напоминания")
+                            .padding(.horizontal, 22)
+                        Text("Мы поможем вам отслеживать личный прогресс")
                             .font(.system(size: 16))
                             .padding(.horizontal, 40)
                     }
                     .foregroundColor(Color("text"))
                     .multilineTextAlignment(.center)
+                    .offset(y:20)
                     Spacer()
                     
-                    VStack (spacing: 15) {
-                        CustomNavigationLink(destination: SecondOnboardView(),
-                                             title: "Далее")
-                        .frame(width: 180, height: 55)
+                    VStack (spacing: 15){
+                        CustomNavigationLink(destination: RegistrationView(),
+                                             title: "Зарегистрироваться")
+                        .frame(width: 230, height: 55)
                         NavigationLink(destination: LoginView()) {
                             Text("У меня уже есть аккаунт")
                                 .foregroundStyle(.white)
                         }
                     }
-                    Spacer(minLength: 80)
+                        
+                    Spacer(minLength: 60)
                 }
             }
         }
@@ -53,5 +52,5 @@ struct FirstOnboardView: View {
 }
 
 #Preview {
-    FirstOnboardView()
+    ThirdOnboardView()
 }

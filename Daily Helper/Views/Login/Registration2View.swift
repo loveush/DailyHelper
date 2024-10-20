@@ -1,10 +1,3 @@
-//
-//  Registration2View.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 22.09.2024.
-//
-
 import SwiftUI
 
 struct Registration2View: View {
@@ -58,18 +51,25 @@ struct Registration2View: View {
                     CustomTextField(text: $weight, placeholder: "Введите вес...")
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.none)
+                    
+                    if !viewModel.errorMessage.isEmpty {
+                        Text(viewModel.errorMessage)
+                            .foregroundStyle(Color.red)
+                    }
                 }
                 
                 Spacer(minLength: 120)
                 
                 TLButton(title: "Завершить", background: Color("darkpink")) {
-                    if let heightValue = Double(height),
-                       let weightValue = Double(weight) {
-                        viewModel.completeRegistration(name: name,
-                                                       height: heightValue,
-                                                       weight: weightValue)
-                    }  else {
-                        viewModel.errorMessage = "Incorrect input"
+                    if viewModel.validate(name: name, weight: weight, height: height) {
+                        if let heightValue = Int(height),
+                           let weightValue = Int(weight) {
+                            viewModel.completeRegistration(name: name,
+                                                           height: heightValue,
+                                                           weight: weightValue)
+                        } else {
+                            viewModel.errorMessage = "Please, enter the correct weight and height"
+                        }
                     }
                 }
                 .frame(width: 180, height: 55)
@@ -82,5 +82,5 @@ struct Registration2View: View {
 }
 
 #Preview {
-    Registration2View(viewModel: SecondRegistrationViewViewModel(user: User(id: "", email: "", password: "", name: "", height: 0.0, weight: 0.0, joined: 0)))
+    Registration2View(viewModel: SecondRegistrationViewViewModel(user: User(id: "", email: "", password: "", name: "", height: 0, weight: 0, joined: 0)))
 }

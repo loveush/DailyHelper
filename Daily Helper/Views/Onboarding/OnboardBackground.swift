@@ -1,10 +1,3 @@
-//
-//  FirstOnboard.swift
-//  Daily Helper
-//
-//  Created by Любовь Ушакова on 27.09.2024.
-//
-
 import SwiftUI
 
 struct OnboardBackground: View {
@@ -25,11 +18,6 @@ struct OnboardBackground: View {
                        height: 500)
                 .rotationEffect(Angle(degrees: -195))
                 .offset(y: 220)
-            
-            Text("DailyHelper")
-                .font(.body)
-                .foregroundColor(Color("darkpink"))
-                .offset(y:-360)
             
         }
     }
