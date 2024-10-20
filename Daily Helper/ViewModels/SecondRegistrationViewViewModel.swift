@@ -11,16 +11,25 @@ class SecondRegistrationViewViewModel: ObservableObject {
         self.user = user
     }
     
-    func completeRegistration(name: String, height: Double, weight: Double) {
+    func completeRegistration(name: String, height: Int, weight: Int) {
         user.name = name
         user.height = height
         user.weight = weight
         
+        // Try to create the user with Firebase Authentication
         Auth.auth().createUser(withEmail: user.email, password: user.password) { [weak self] result, error in
-            guard let userId = result?.user.uid else {
+            if let error = error {
+                print("Error creating user: \(error.localizedDescription)")
                 return
             }
             
+            // Ensure result is not nil and retrieve the user ID
+            guard let userId = result?.user.uid else {
+                print("Error: result is nil, user ID could not be retrieved.")
+                return
+            }
+            
+            // Call the function to insert the user record into Firestore
             self?.insertUserRecord(id: userId)
         }
     }
@@ -30,8 +39,14 @@ class SecondRegistrationViewViewModel: ObservableObject {
         let db = Firestore.firestore()
         
         db.collection("users")
-            .document(id)
-            .setData(user.asDictionary())
+                .document(id)
+                .setData(user.asDictionary()) { error in
+                    if let error = error {
+                        print("Error writing user record to Firestore: \(error.localizedDescription)")
+                    } else {
+                        print("User record successfully written!")
+                    }
+                }
     }
     
     func validate(name: String, weight: String, height: String) -> Bool {

@@ -16,8 +16,8 @@ class RegistrationViewViewModel: ObservableObject {
                     email: email,
                     password: password,
                     name: "",
-                    height: 0.0,
-                    weight: 0.0,
+                    height: 0,
+                    weight: 0,
                     joined: Date().timeIntervalSince1970)
     }
     

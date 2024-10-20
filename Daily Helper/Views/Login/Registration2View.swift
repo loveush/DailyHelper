@@ -62,8 +62,8 @@ struct Registration2View: View {
                 
                 TLButton(title: "Завершить", background: Color("darkpink")) {
                     if viewModel.validate(name: name, weight: weight, height: height) {
-                        if let heightValue = Double(height),
-                           let weightValue = Double(weight) {
+                        if let heightValue = Int(height),
+                           let weightValue = Int(weight) {
                             viewModel.completeRegistration(name: name,
                                                            height: heightValue,
                                                            weight: weightValue)
@@ -82,5 +82,5 @@ struct Registration2View: View {
 }
 
 #Preview {
-    Registration2View(viewModel: SecondRegistrationViewViewModel(user: User(id: "", email: "", password: "", name: "", height: 0.0, weight: 0.0, joined: 0)))
+    Registration2View(viewModel: SecondRegistrationViewViewModel(user: User(id: "", email: "", password: "", name: "", height: 0, weight: 0, joined: 0)))
 }
