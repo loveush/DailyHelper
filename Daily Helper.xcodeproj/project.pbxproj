@@ -23,6 +23,8 @@
 		A7241ABB2CC2F49700E6B23D /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7241ABA2CC2F49700E6B23D /* ProfileViewViewModel.swift */; };
 		A7241ABF2CC512BE00E6B23D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7241ABE2CC512BE00E6B23D /* GoogleService-Info.plist */; };
 		A72894A72CA203BF00C19B7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A72894A62CA203B700C19B7C /* User.swift */; };
+		A79F96A22CC581CF00A39DE2 /* NewWorkoutItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79F96A12CC581CF00A39DE2 /* NewWorkoutItemView.swift */; };
+		A79F96A42CC5822900A39DE2 /* NewWorkoutItemViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79F96A32CC5822900A39DE2 /* NewWorkoutItemViewViewModel.swift */; };
 		A7A949372C9F1D1700EF7504 /* Daily_HelperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A949362C9F1D1700EF7504 /* Daily_HelperApp.swift */; };
 		A7A949392C9F1D1700EF7504 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A949382C9F1D1700EF7504 /* MainView.swift */; };
 		A7A9493B2C9F1D1B00EF7504 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A9493A2C9F1D1B00EF7504 /* Assets.xcassets */; };
@@ -59,6 +61,8 @@
 		A7241ABA2CC2F49700E6B23D /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		A7241ABE2CC512BE00E6B23D /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A72894A62CA203B700C19B7C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A79F96A12CC581CF00A39DE2 /* NewWorkoutItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutItemView.swift; sourceTree = "<group>"; };
+		A79F96A32CC5822900A39DE2 /* NewWorkoutItemViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWorkoutItemViewViewModel.swift; sourceTree = "<group>"; };
 		A7A949332C9F1D1700EF7504 /* Daily Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7A949362C9F1D1700EF7504 /* Daily_HelperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Daily_HelperApp.swift; sourceTree = "<group>"; };
 		A7A949382C9F1D1700EF7504 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -104,12 +108,12 @@
 		A7241AB82CBEE6FF00E6B23D /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				A7A949652CA0999500EF7504 /* CustomTextField.swift */,
 				A7A949692CA0BB5300EF7504 /* CustomSecureField.swift */,
 				A7A9495D2CA0888100EF7504 /* Registration2View.swift */,
 				A7A949592C9F4C8E00EF7504 /* RegistrationView.swift */,
 				A7A949572C9F4C7800EF7504 /* LoginView.swift */,
 				A7A9495B2CA0326000EF7504 /* LoginBackgroundView.swift */,
+				A7A949652CA0999500EF7504 /* CustomTextField.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -157,6 +161,7 @@
 				A7A949512C9F4B8F00EF7504 /* ProfileView.swift */,
 				A7241AB52CBECA7000E6B23D /* WorkoutItemView.swift */,
 				A7A949532C9F4C4800EF7504 /* WorkoutsView.swift */,
+				A79F96A12CC581CF00A39DE2 /* NewWorkoutItemView.swift */,
 				A7241AAD2CBB0E8D00E6B23D /* PillboxView.swift */,
 				A7241AAF2CBB0ED800E6B23D /* WaterBalanceView.swift */,
 				A7241AB72CBEE68900E6B23D /* Onboarding */,
@@ -174,6 +179,7 @@
 				A72131822CA5C43A00BEAFDE /* MainViewViewModel.swift */,
 				A7241ABA2CC2F49700E6B23D /* ProfileViewViewModel.swift */,
 				A7241AB32CBD9E7E00E6B23D /* WorkoutsViewViewModel.swift */,
+				A79F96A32CC5822900A39DE2 /* NewWorkoutItemViewViewModel.swift */,
 				A7A9496B2CA1C14100EF7504 /* RegistrationViewViewModel.swift */,
 				A72131802CA4A47D00BEAFDE /* SecondRegistrationViewViewModel.swift */,
 			);
@@ -281,6 +287,7 @@
 				A7A9495E2CA0888100EF7504 /* Registration2View.swift in Sources */,
 				A7A949662CA0999500EF7504 /* CustomTextField.swift in Sources */,
 				A72131912CA877F800BEAFDE /* ThirdOnboardView.swift in Sources */,
+				A79F96A22CC581CF00A39DE2 /* NewWorkoutItemView.swift in Sources */,
 				A7241AB42CBD9E7E00E6B23D /* WorkoutsViewViewModel.swift in Sources */,
 				A7241AB22CBD986500E6B23D /* Workout.swift in Sources */,
 				A72131832CA5C43A00BEAFDE /* MainViewViewModel.swift in Sources */,
@@ -298,6 +305,7 @@
 				A7A9496C2CA1C14100EF7504 /* RegistrationViewViewModel.swift in Sources */,
 				A7A9495A2C9F4C8E00EF7504 /* RegistrationView.swift in Sources */,
 				A7A9496A2CA0BB5300EF7504 /* CustomSecureField.swift in Sources */,
+				A79F96A42CC5822900A39DE2 /* NewWorkoutItemViewViewModel.swift in Sources */,
 				A72131892CA6D4D400BEAFDE /* FirstOnboardView.swift in Sources */,
 				A7A949682CA0B39F00EF7504 /* LoginViewViewModel.swift in Sources */,
 				A721317D2CA319FD00BEAFDE /* Extensions.swift in Sources */,

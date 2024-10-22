@@ -6,33 +6,73 @@
 //
 
 import Foundation
+import FirebaseFirestore
 
 class WorkoutsViewViewModel: ObservableObject {
     @Published var date = Date.now
-    @Published var workouts: [Workout] = []
-    @Published var counts = [Int:Int]()
+    @Published var showingNewWorkoutItemView = false
     @Published var currentWorkouts: [Workout] = []
+    
+    var counts: [Int: Int] = [:] // Assuming you use this for displaying counts on the calendar
+
+    var currentDayWorkouts: [Workout] {
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        
+        return currentWorkouts.filter { workout in
+            workout.startDate >= startOfDay && workout.startDate < endOfDay
+        }
+    }
     
     init() {}
     
-    func exampleWorkouts() {
-        let workout = Workout(name: "Morning run", date: Date(), type: "Cardio", comment: "Example workout description", duration: 100000)
-        let workout2 = Workout(name: "Evening run", date: Date(), type: "Cardio", comment: "Example workout description", duration: 100000)
-        workouts.append(workout)
-        workouts.append(workout2)
-    }
-    
-    func setupCounts() {
-        let mappedItems = workouts.map {($0.date.dayInt, 1)}
-        counts = Dictionary(mappedItems, uniquingKeysWith: +)
-    }
-    
-    func setCurrentWorkouts() {
-        currentWorkouts = []
-        for workout in workouts {
-            if workout.date.dayInt == date.dayInt {
-                currentWorkouts.append(workout)
+    func fetchWorkouts(for userId: String) {
+        let db = Firestore.firestore()
+        db.collection("users").document(userId).collection("workouts")
+            .getDocuments { (snapshot, error) in
+                if let error = error {
+                    print("Error fetching workouts: \(error.localizedDescription)")
+                    return
+                }
+                guard let documents = snapshot?.documents else {
+                    print("No workouts found.")
+                    return
+                }
+
+                // Print document data for debugging
+                for document in documents {
+                    print("Document data: \(document.data())")
+                }
+
+                // Parse the documents into your `Workout` model manually
+                self.currentWorkouts = documents.compactMap { (document) -> Workout? in
+                    let data = document.data()
+                    guard let name = data["name"] as? String,
+                          let startDateTimestamp = data["startDate"] as? Double,
+                          let endDateTimestamp = data["endDate"] as? Double,
+                          let type = data["type"] as? String,
+                          let comment = data["comment"] as? String else {
+                        print("Error: Missing fields in document \(document.documentID)")
+                        return nil
+                    }
+
+                    // Convert timestamps to Date
+                    let startDate = Date(timeIntervalSinceReferenceDate: startDateTimestamp)
+                    print("startDateTimestamp:\(startDateTimestamp)")
+                    let endDate = Date(timeIntervalSinceReferenceDate: endDateTimestamp)
+
+                    return Workout(
+                        id: document.documentID,
+                        name: name,
+                        type: type,
+                        startDate: startDate,
+                        endDate: endDate,
+                        comment: comment
+                    )
+                }
+
+                print("Current workouts: \(self.currentWorkouts)")
             }
-        }
     }
+
 }

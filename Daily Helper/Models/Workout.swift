@@ -6,27 +6,23 @@
 //
 import SwiftData
 import Foundation
+import FirebaseFirestore
 
-enum WorkoutType: String {
-    case cardio = "Cardio"
-    case strength = "Strength"
-    case flexibility = "Flexibility"
-    case balance = "Balance"
-}
 
-@Model
-class Workout {
+struct Workout: Codable, Identifiable {
+    var id: String
     var name: String
-    var date: Date
     var type: String
+    var startDate: Date
+    var endDate: Date
     var comment: String
-    var duration: TimeInterval
     
-    init(name: String = "", date: Date, type: String = "", comment: String = "", duration: TimeInterval) {
+    init(id: String, name: String = "", type: String = "", startDate: Date, endDate: Date, comment: String = "") {
+        self.id = id
         self.name = name
-        self.date = date
         self.type = type
+        self.startDate = startDate
+        self.endDate = endDate
         self.comment = comment
-        self.duration = duration
     }
 }
