@@ -13,7 +13,7 @@ class WorkoutsViewViewModel: ObservableObject {
     @Published var showingNewWorkoutItemView = false
     @Published var currentWorkouts: [Workout] = []
     
-    var counts: [Int: Int] = [:] // Assuming you use this for displaying counts on the calendar
+    var counts: [Int: Int] = [:]
 
     var currentDayWorkouts: [Workout] {
         let startOfDay = Calendar.current.startOfDay(for: date)
