@@ -2,16 +2,17 @@ import SwiftUI
 
 struct WorkoutsView: View {
     
-    let daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"]
+    let daysOfWeek = Date.capitalizedFirstLettersOfWeekdays
     let columns = Array(repeating: GridItem(.flexible()), count: 7)
     @State private var days: [Date] = []
+    
+    @StateObject var viewModel = WorkoutsViewViewModel()
     
     private let userId: String
     init(userId: String) {
         self.userId = userId
     }
     
-    @StateObject var viewModel = WorkoutsViewViewModel()
     var body: some View {
         NavigationStack {
             ZStack {
@@ -52,8 +53,14 @@ struct WorkoutsView: View {
                                 if day.monthInt != viewModel.date.monthInt {
                                     Text("")
                                 } else {
+                                    let hasWorkouts = viewModel.currentWorkouts.contains { workout in
+                                        let startOfDay = Calendar.current.startOfDay(for: day)
+                                        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+                                        return workout.startDate >= startOfDay && workout.startDate < endOfDay
+                                    }
+                                    
                                     Text(day.formatted(.dateTime.day()))
-                                        .font(.system(size:18))
+                                        .font(.system(size: 18))
                                         .foregroundStyle(Color("text"))
                                         .frame(maxWidth: .infinity, minHeight: 35)
                                         .background(
@@ -62,7 +69,7 @@ struct WorkoutsView: View {
                                                 .fill(Color("pink"))
                                                 .frame(width: 40, height: 40)
                                                 .opacity(0.6)
-                                                .shadow(radius: 2, y:2) : nil
+                                                .shadow(radius: 2, y: 2) : nil
                                         )
                                         .background(
                                             viewModel.date == day ?
@@ -72,12 +79,11 @@ struct WorkoutsView: View {
                                                 .opacity(0.4): nil
                                         )
                                         .overlay(alignment: .top) {
-                                            if viewModel.counts[day.dayInt] != nil {
+                                            if hasWorkouts {
                                                 Circle()
                                                     .fill(Color.white)
                                                     .frame(width: 8, height: 8)
                                             }
-                                            
                                         }
                                         .onTapGesture {
                                             viewModel.date = day
@@ -94,6 +100,7 @@ struct WorkoutsView: View {
                     .padding(.horizontal, 20)
                     .padding(.vertical, 10)
                     
+                    // Workouts panel
                     HStack {
                         Text("Plan for the day:")
                             .font(.title3)
@@ -101,27 +108,26 @@ struct WorkoutsView: View {
                         
                         Spacer()
                         
-                        // Add workout
-                        Image(systemName: "plus")
-                            .resizable()
-                            .foregroundStyle(Color("darkpink"))
-                            .frame(width: 20, height: 20)
+                        // Add workout button
+                        Button {
+                            viewModel.showingNewWorkoutItemView = true
+                        } label: {
+                            Image(systemName: "plus")
+                                .resizable()
+                                .foregroundStyle(Color("darkpink"))
+                                .frame(width: 20, height: 20)
+                        }
+                        .sheet(isPresented: $viewModel.showingNewWorkoutItemView) {
+                            NewWorkoutItemView(date: viewModel.date, newWorkoutItemPresented: $viewModel.showingNewWorkoutItemView)
+                        }
+                        
                     }
                     .padding(.horizontal, 30)
                     .padding(.top, 5)
                     
                     // Workouts list
-                    if viewModel.counts[viewModel.date.dayInt] != nil {
-                        ScrollView {
-                            VStack () {
-                                ForEach(viewModel.currentWorkouts) { workout in
-                                    WorkoutItemView(workout: workout)
-                                }
-                            }
-                        }
-                    } else {
+                    if viewModel.currentDayWorkouts.isEmpty {
                         Spacer()
-                        
                         Text("Add a workout")
                             .font(.largeTitle)
                             .foregroundStyle(Color("darkpink"))
@@ -131,21 +137,25 @@ struct WorkoutsView: View {
                             .frame(width: 50, height: 50)
                             .foregroundStyle(Color("darkpink"))
                             .opacity(0.5)
-                        
                         Spacer()
+                    } else {
+                        ScrollView {
+                            VStack {
+                                ForEach(viewModel.currentDayWorkouts) { workout in
+                                    WorkoutItemView(workout: workout)
+                                }
+                            }
+                        }
                     }
                     
                 }
                 .onAppear() {
                     days = viewModel.date.calendarDisplayDays
-                    viewModel.exampleWorkouts()
-                    viewModel.setupCounts()
-                    viewModel.setCurrentWorkouts()
+                    viewModel.fetchWorkouts(for: userId)
                 }
                 .onChange(of: viewModel.date) {
                     days = viewModel.date.calendarDisplayDays
-                    viewModel.setupCounts()
-                    viewModel.setCurrentWorkouts()
+                    viewModel.fetchWorkouts(for: userId)
                 }
             }
         }
@@ -153,5 +163,5 @@ struct WorkoutsView: View {
 }
 
 #Preview {
-    WorkoutsView(userId: "")
+    WorkoutsView(userId: "81D4B5BF-8651-4450-AD8A-76368FA06EC2")
 }

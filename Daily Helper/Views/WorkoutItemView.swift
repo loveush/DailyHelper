@@ -29,7 +29,7 @@ struct WorkoutItemView: View {
                     .padding(15)
                     
                     Spacer()
-                    Text("\(workout.date, style: .time)")
+                    Text("\(workout.startDate, style: .time)")
                         .multilineTextAlignment(.trailing)
                         .padding(20)
                         .foregroundStyle(Color("text"))
@@ -47,5 +47,5 @@ struct WorkoutItemView: View {
 }
 
 #Preview {
-    WorkoutItemView(workout: Workout(name: "Morning Run", date: Date(), type: "Cardio", duration: 110))
+    WorkoutItemView(workout: Workout(id: "", name: "Morning Run", type: "Cardio", startDate: Date(), endDate: Date()))
 }
