@@ -27,7 +27,6 @@
 ## Technologies Used
 
 - **SwiftUI**: For building the user interface.
-- **Combine**: For handling data flow and updates.
 - **Firebase**: For backend services, including data storage and user authentication.
 - **Xcode**: The IDE used for iOS development.
 - **MVVM Architecture**: To maintain clean code organization and separation of concerns.
